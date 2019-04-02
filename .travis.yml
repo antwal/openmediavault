@@ -4,6 +4,7 @@ branches:
   - /^[0-9.]+-releases$/
 
 sudo: required
+dist: trusty
 
 install:
   - sudo apt-get update -q
@@ -12,10 +13,12 @@ install:
   - sudo dpkg -i vagrant_2.2.4_x86_64.deb
 
 script:
-  - VBoxManage --version
   - vagrant box add -f --provider virtualbox hashicorp/precise64
+  - VBoxManage --version
+  - cd vagrant
   - vagrant up
-  - cd deb/openmediavault
+  - cd ../deb/openmediavault
+  - dh-systems debuild -S -sa
   - fakeroot debian/rules clean binary
 
 addons:
@@ -23,6 +26,7 @@ addons:
     packages:
     - build-essential
     - dh-make
+    - devscripts
     - dpkg-dev
     - nfs-kernel-server
     - fakeroot
