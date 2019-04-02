@@ -13,10 +13,13 @@ install:
   - sudo apt-get install -q virtualbox --fix-missing
   - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
   - sudo dpkg -i vagrant_2.2.4_x86_64.deb
+  - VBoxManage --version
 
 script:
-  - vagrant init hashicorp/precise64
-  - vagrant up
+#  - vagrant init hashicorp/precise64
+#  - vagrant up
+  - cd deb
+  - fakeroot debian/rules clean binary
 
 addons:
   apt:
