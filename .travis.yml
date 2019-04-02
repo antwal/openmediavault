@@ -7,11 +7,16 @@ sudo: required
 
 install:
   - sudo apt-get update -q
+  - sudo apt-get install build-essential
+  - sudo apt-get install dpkg-dev
   - sudo apt-get install nfs-kernel-server
   - sudo apt-get install -q virtualbox --fix-missing
   - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
   - sudo dpkg -i vagrant_2.2.4_x86_64.deb
-  - bundle install
+
+script:
+  - vagrant init hashicorp/precise64
+  - vagrant up
 
 addons:
   apt:
