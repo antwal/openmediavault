@@ -29,10 +29,10 @@ addons:
   apt:
     packages:
     - build-essential
-    - dh-systemd
+#    - dh-systemd
     - dh-make
     - dh-autoreconf
-    - debhelper
+#    - debhelper
     - devscripts
     - dpkg-dev
     - nfs-kernel-server
