@@ -19,8 +19,8 @@ install:
 script:
 #  - vagrant box add -f --provider virtualbox hashicorp/precise64
   - VBoxManage --version
-  - cd vagrant
-  - vagrant up
+#  - cd vagrant
+#  - vagrant up
   - cd ../deb/openmediavault
   - dh-systems debuild -S -sa
   - fakeroot debian/rules clean binary
@@ -29,7 +29,7 @@ addons:
   apt:
     packages:
     - build-essential
-#    - dh-systemd
+    - dh-systemd
     - dh-make
     - dh-autoreconf
 #    - debhelper
