@@ -11,6 +11,10 @@ install:
   - sudo apt-get install -q linux-headers-$(uname -r) --fix-missing
   - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
   - sudo dpkg -i vagrant_2.2.4_x86_64.deb
+#  - sudo dpkg-reconfigure virtualbox-dkms
+#  - sudo dpkg-reconfigure virtualbox
+  - sudo modprobe vboxdrv
+  - sudo modprobe vboxnetflt
 
 script:
   - vagrant box add -f --provider virtualbox hashicorp/precise64
@@ -18,7 +22,7 @@ script:
   - cd vagrant
   - vagrant up
   - cd ../deb/openmediavault
-  - dh-systems debuild -S -sa
+#  - dh-systems debuild -S -sa
   - fakeroot debian/rules clean binary
 
 addons:
@@ -26,6 +30,8 @@ addons:
     packages:
     - build-essential
     - dh-make
+    - dh-autoreconf
+    - debhelper
     - devscripts
     - dpkg-dev
     - nfs-kernel-server
