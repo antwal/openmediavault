@@ -22,6 +22,7 @@ addons:
   apt:
     packages:
     - build-essential
+    - dh-make
     - dpkg-dev
     - nfs-kernel-server
     - fakeroot
