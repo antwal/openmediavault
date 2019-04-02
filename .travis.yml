@@ -29,6 +29,7 @@ addons:
   apt:
     packages:
     - build-essential
+    - dh-systemd
     - dh-make
     - dh-autoreconf
     - debhelper
