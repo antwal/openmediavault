@@ -33,18 +33,18 @@ install:
   - sudo modprobe vboxdrv
   - sudo modprobe vboxnetflt
 
-jobs:  
-  include:
-    - stage: test
-      name: "Test Vagrant"
-      script: cd && VBoxManage --version && cd vagrant && vagrant up
-    - stage: test
-      name: "Test deb/openmediavault"
-      script: cd && cd deb/openmediavault && fakeroot debian/rules clean binary
+#jobs:  
+#  include:
+#    - stage: test
+#      name: "Test Vagrant"
+#      script: cd && VBoxManage --version && cd vagrant && vagrant up
+#    - stage: test
+#      name: "Test deb/openmediavault"
+#      script: cd && cd deb/openmediavault && fakeroot debian/rules clean binary
 
-#script:
-#  - VBoxManage --version
+script:
+  - VBoxManage --version
 #  - cd vagrant
 #  - vagrant up
-#  - cd deb/openmediavault
-#  - fakeroot debian/rules clean binary
+  - cd deb/openmediavault
+  - fakeroot debian/rules clean binary
