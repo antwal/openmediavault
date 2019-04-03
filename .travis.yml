@@ -36,12 +36,10 @@ install:
 jobs:  
   include:
     - stage: test
-      name: "Tests 1"
+      name: "Test Vagrant"
       script: cd && VBoxManage --version && cd vagrant && vagrant up
-#    - script: ./integration-tests
-#      name: "Integration Tests"
     - stage: test
-      name: "Test 2"
+      name: "Test deb/openmediavault"
       script: cd && cd deb/openmediavault && fakeroot debian/rules clean binary
 
 #script:
