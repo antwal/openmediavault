@@ -24,8 +24,8 @@ addons:
     - linux-headers-generic
 
 install:
-  - sudo apt-get update -q
-  - sudo apt-get install -q linux-headers-$(uname -r) --fix-missing
+#  - sudo apt-get update -q
+#  - sudo apt-get install -q linux-headers-$(uname -r) --fix-missing
   - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
   - sudo dpkg -i vagrant_2.2.4_x86_64.deb
   - sudo dpkg-reconfigure virtualbox-dkms
