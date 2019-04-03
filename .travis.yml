@@ -6,24 +6,6 @@ branches:
 sudo: required
 dist: trusty
 
-install:
-  - sudo apt-get update -q
-  - sudo apt-get install -q linux-headers-$(uname -r) --fix-missing
-  - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
-  - sudo dpkg -i vagrant_2.2.4_x86_64.deb
-  - sudo dpkg-reconfigure virtualbox-dkms
-  - sudo dpkg-reconfigure virtualbox
-  - sudo modprobe vboxdrv
-  - sudo modprobe vboxnetflt
-
-script:
-#  - vagrant box add -f --provider virtualbox hashicorp/precise64
-  - VBoxManage --version
-#  - cd vagrant
-#  - vagrant up
-  - cd deb/openmediavault
-  - fakeroot debian/rules clean binary
-
 addons:
   apt:
     packages:
@@ -40,3 +22,31 @@ addons:
     - virtualbox
     - virtualbox-dkms
     - linux-headers-generic
+
+install:
+  - sudo apt-get update -q
+  - sudo apt-get install -q linux-headers-$(uname -r) --fix-missing
+  - sudo wget -nv https://releases.hashicorp.com/vagrant/2.2.4/vagrant_2.2.4_x86_64.deb
+  - sudo dpkg -i vagrant_2.2.4_x86_64.deb
+  - sudo dpkg-reconfigure virtualbox-dkms
+  - sudo dpkg-reconfigure virtualbox
+  - sudo modprobe vboxdrv
+  - sudo modprobe vboxnetflt
+
+jobs:  
+  include:
+    - stage: test
+      name: "Tests 1"
+      script: cd && VBoxManage --version && cd vagrant && vagrant up
+#    - script: ./integration-tests
+#      name: "Integration Tests"
+    - stage: test
+      name: "Test 2"
+      script: cd && cd deb/openmediavault && fakeroot debian/rules clean binary
+
+#script:
+#  - VBoxManage --version
+#  - cd vagrant
+#  - vagrant up
+#  - cd deb/openmediavault
+#  - fakeroot debian/rules clean binary
