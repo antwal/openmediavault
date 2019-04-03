@@ -21,7 +21,7 @@ script:
   - VBoxManage --version
 #  - cd vagrant
 #  - vagrant up
-  - cd ../deb/openmediavault
+  - cd deb/openmediavault
   - dh-systems debuild -S -sa
   - fakeroot debian/rules clean binary
 
