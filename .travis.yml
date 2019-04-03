@@ -22,7 +22,6 @@ script:
 #  - cd vagrant
 #  - vagrant up
   - cd deb/openmediavault
-  - dh-systems debuild -S -sa
   - fakeroot debian/rules clean binary
 
 addons:
